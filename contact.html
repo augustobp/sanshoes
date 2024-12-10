@@ -176,7 +176,39 @@
                                     
                                  </div>
                               </div>
-                           </form>
+                           </form><form name="form1" action="https://formspree.io/f/mqakoyzl" method="post" id="request" class="main_form" onsubmit="return validar(event)">
+    <div class="row">
+        <div class="col-md-12">
+            <input class="contactus" placeholder="Seu nome" type="text" name="name">
+        </div>
+        <div class="col-md-12">
+            <input class="contactus" placeholder="Seu Email" type="email" name="email">
+        </div>
+        <div class="col-md-12">
+            <select class="contactus" name="subject">
+                <option>Nota (0 - 5)</option>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="col-md-12">
+            <textarea class="textarea" placeholder="Mensagem" name="message"></textarea>
+        </div>
+        <div class="col-md-12">
+            <button class="send_btn" type="submit">Enviar</button>
+            <button class="send_btn" type="reset">Apagar</button>
+
+            <div id="confirmacao" class="hidden">
+                <p>Formulário enviado com sucesso!</p>
+            </div>
+        </div>
+    </div>
+</form>
+
                         </div>
                      </div>
                   </div>
