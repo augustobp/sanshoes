@@ -31,55 +31,61 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
       <script>
-        function validar(event) {
-            event.preventDefault(); // Impede o envio e o recarregamento da página
+    function validar(event) {
+        event.preventDefault(); // Impede o envio imediato do formulário para validação
 
-            var form1 = document.forms['form1'];
-            var name = form1.name.value;
-            var email = form1.email.value;
-            var subject = form1.subject.value;
+        var form1 = document.forms['form1'];
+        var name = form1.name.value;
+        var email = form1.email.value;
+        var subject = form1.subject.value;
 
-            if (name == "") {
-                alert("Preencha o campo nome");
-                form1.name.focus();
-                return false;
-            }
-
-            if (email == "") {
-                alert("Preencha o campo email");
-                form1.email.focus();
-                return false;
-            }
-
-            if (subject == "Nota (0 - 5)") {
-                alert("De a sua nota ao site");
-                form1.subject.focus();
-                return false;
-            }
-
-            // Exibe a mensagem de confirmação
-            var confirmacaoDiv = document.getElementById('confirmacao');
-            confirmacaoDiv.classList.remove('hidden');
-
-            setTimeout(function () {
-                confirmacaoDiv.classList.add('fade-out');
-            }, 3000);
-
-            setTimeout(function () {
-                confirmacaoDiv.classList.add('hidden');
-                confirmacaoDiv.classList.remove('fade-out');
-                confirmacaoDiv.style.opacity = '1';
-            }, 3700);
-
-            // Limpa os campos do formulário
-            form1.name.value = '';
-            form1.email.value = '';
-            form1.subject.value = 'Nota (0 - 5)';
-            form1.message.value = '';
-
-            return false; // Garante que a execução da função pare aqui
+        // Verificação dos campos obrigatórios
+        if (name == "") {
+            alert("Preencha o campo nome");
+            form1.name.focus();
+            return false;
         }
-    </script>
+
+        if (email == "") {
+            alert("Preencha o campo email");
+            form1.email.focus();
+            return false;
+        }
+
+        if (subject == "Nota (0 - 5)") {
+            alert("De a sua nota ao site");
+            form1.subject.focus();
+            return false;
+        }
+
+        // Exibe a mensagem de confirmação
+        var confirmacaoDiv = document.getElementById('confirmacao');
+        confirmacaoDiv.classList.remove('hidden');
+
+        // Esconde a mensagem após 3 segundos
+        setTimeout(function () {
+            confirmacaoDiv.classList.add('fade-out');
+        }, 3000);
+
+        // Reverte a visibilidade após 3.7 segundos
+        setTimeout(function () {
+            confirmacaoDiv.classList.add('hidden');
+            confirmacaoDiv.classList.remove('fade-out');
+            confirmacaoDiv.style.opacity = '1';
+        }, 3700);
+
+        // Limpa os campos do formulário (caso necessário)
+        form1.name.value = '';
+        form1.email.value = '';
+        form1.subject.value = 'Nota (0 - 5)';
+        form1.message.value = '';
+
+        // **Agora o envio é permitido após a validação**
+        form1.submit();  // Submete o formulário manualmente para o Formspree
+
+        return true;  // Permite que o envio aconteça
+    }
+</script>
 </head>
 <body class="main-layout inner_page">
     <!-- Loader -->
