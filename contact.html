@@ -32,8 +32,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
       <script>
     function validar(event) {
-        event.preventDefault(); // Impede o envio imediato do formulário para validação
-
         var form1 = document.forms['form1'];
         var name = form1.name.value;
         var email = form1.email.value;
@@ -43,31 +41,32 @@
         if (name == "") {
             alert("Preencha o campo nome");
             form1.name.focus();
+            event.preventDefault(); // Bloqueia o envio se houver erro
             return false;
         }
 
         if (email == "") {
             alert("Preencha o campo email");
             form1.email.focus();
+            event.preventDefault(); // Bloqueia o envio se houver erro
             return false;
         }
 
         if (subject == "Nota (0 - 5)") {
             alert("De a sua nota ao site");
             form1.subject.focus();
+            event.preventDefault(); // Bloqueia o envio se houver erro
             return false;
         }
 
-        // Exibe a mensagem de confirmação
+        // Se tudo estiver correto, exibe a mensagem de confirmação
         var confirmacaoDiv = document.getElementById('confirmacao');
         confirmacaoDiv.classList.remove('hidden');
 
-        // Esconde a mensagem após 3 segundos
         setTimeout(function () {
             confirmacaoDiv.classList.add('fade-out');
         }, 3000);
 
-        // Reverte a visibilidade após 3.7 segundos
         setTimeout(function () {
             confirmacaoDiv.classList.add('hidden');
             confirmacaoDiv.classList.remove('fade-out');
@@ -80,10 +79,7 @@
         form1.subject.value = 'Nota (0 - 5)';
         form1.message.value = '';
 
-        // **Agora o envio é permitido após a validação**
-        form1.submit();  // Submete o formulário manualmente para o Formspree
-
-        return true;  // Permite que o envio aconteça
+        return true; // Permite o envio se tudo estiver correto
     }
 </script>
 </head>
